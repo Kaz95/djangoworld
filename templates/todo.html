@@ -1,0 +1,55 @@
+<h1>this is the todo page</h1>
+
+<!--<ul>-->
+    <!--<li>temporary odo item A</li>-->
+    <!--<li>temporary odo item B</li>-->
+<!--</ul>-->
+
+<ul>
+    {% for todo_item in all_items %}
+        <li>{{ todo_item.content }}
+            <form action="/deleteTodo/{{ todo_item.id }}/"
+                  style="display: inline;"
+                  method="post">{% csrf_token %}
+            <!--type submit for input button. value = text on button-->
+            <input type="submit" value="Delete"/>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+
+
+
+<!-- Added new form tag that goes to specified url and uses specified method (get or post)-->
+<!--{ csrf_token %} is django specific tag for security purposes-->
+<form action="/addTodo/" method="post">{% csrf_token %}
+    <!--input tag. type is text because im asking for user text input-->
+    <input type="text" name="content"/>
+    <!--type submit for input button. value = text on button-->
+    <input type="submit" value="Add"/>
+</form>
+
+
+
+<ul>
+    {% for pog in all_pogs %}
+        <li>{{ pog.name }} - {{ pog.rank }}
+            <form action="/deletepog/{{ pog.id }}/"
+                  style="display: inline;"
+                  method="post">{% csrf_token %}
+            <!--type submit for input button. value = text on button-->
+            <input type="submit" value="Delete"/>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+
+
+
+
+<form action="/addPog/" method="post">{% csrf_token %}
+    <!--input tag. type is text because im asking for user text input-->
+    <!--<input type="text" name="content"/>-->
+    <!--type submit for input button. value = text on button-->
+    <input type="submit" value="Add Pog"/>
+</form>
